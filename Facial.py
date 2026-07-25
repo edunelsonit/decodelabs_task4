@@ -13,7 +13,7 @@ from mediapipe.tasks.python import vision
 # --- MODEL DOWNLOAD CONFIGURATION ---
 MODELS = {
     "hand_landmarker.task": "https://storage.googleapis.com/mediapipe-models/hand_landmarker/hand_landmarker/float16/1/hand_landmarker.task",
-    "face_detector.task": "https://storage.googleapis.com/mediapipe-models/face_detector/blaze_face_short_range/float16/1/blaze_face_short_range.task"
+    "face_detector.tflite": "https://storage.googleapis.com/mediapipe-models/face_detector/blaze_face_short_range/float16/1/blaze_face_short_range.tflite"
 }
 
 def ensure_models_downloaded():
@@ -50,7 +50,7 @@ class ModernFaceAndHandApp:
         self.hand_landmarker = vision.HandLandmarker.create_from_options(hand_options)
 
         # 3. Initialize Modern MediaPipe Face Detector
-        face_base_options = python.BaseOptions(model_asset_path="face_detector.task")
+        face_base_options = python.BaseOptions(model_asset_path="face_detector.tflite")
         face_options = vision.FaceDetectorOptions(
             base_options=face_base_options,
             running_mode=vision.RunningMode.IMAGE,
